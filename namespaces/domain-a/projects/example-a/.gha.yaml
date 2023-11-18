@@ -1,0 +1,42 @@
+
+moduleName: example-a
+teamNamespace: domain-a
+
+sharedParams:
+  ROOT_DIR: "namespaces/domain-a"
+
+defaultFileChangeTrigger: &defaultFileChangeTrigger
+  - "namespaces/domain-a/projects/example-a/**"
+
+onPullRequest:
+  - name: build
+    pipelineRef:
+      name: common-job
+    pipelineRunValues:
+      params:
+        COMMAND: make build
+    triggerConditions:
+      fileChangesMatchAny: *defaultFileChangeTrigger
+
+  - name: test
+    pipelineRef:
+      name: common-job
+    pipelineRunValues:
+      params:
+        COMMAND: make test
+    triggerConditions:
+      fileChangesMatchAny:
+        - "namespaces/domain-a/projects/example-a/tests/**"
+
+onBranchMerge:
+  - name: cleanup
+    pipelineRef:
+      name: common-job
+    pipelineRunValues:
+      params:
+        COMMAND: >-
+          make clean
+    triggerConditions:
+      destinationBranchMatchesAny:
+        - 'master'
+      fileChangesMatchAny: *defaultFileChangeTrigger
