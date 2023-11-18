@@ -1,0 +1,44 @@
+name: "Common job"
+on:
+  workflow_dispatch:
+    inputs:
+      PIPELINE_NAME:
+        required: true
+      ROOT_DIR:
+        required: false
+        default: ""
+      COMMAND:
+        required: true
+      SERIALIZED_VARIABLES: # workaround the 10 input limit by serializing the variables into a JSON string
+        required: true
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
+jobs:
+  Execute_Task:
+    name: "${{ github.event.inputs.PIPELINE_NAME }}" # Required to be able to differentiate between jobs
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SERIALIZED_VARIABLES: ${{ github.event.inputs.SERIALIZED_VARIABLES }}
+    steps:
+      - name: Load Serialized Variables
+        run: |
+          variables=$(echo $SERIALIZED_VARIABLES | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]')
+          while IFS= read -r line; do
+              echo "$line" >> $GITHUB_ENV
+          done <<< "$variables"
+      - name: Check out Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # We need to fetch all history so that we can checkout the PR merge commit
+          # We check out github.event.pull_request.merge_commit_sha
+          # to ensure we are testing the exact code that will be merged into the base branch
+          ref: ${{ env.PR_MERGE_SHA }} # Provided via SERIALIZED_VARIABLES
+      - name: Execute Task
+        env:
+          USER_HOME: ${{ github.workspace }}
+        working-directory: ${{ github.event.inputs.ROOT_DIR }}
+        run: ${{ github.event.inputs.COMMAND }}
