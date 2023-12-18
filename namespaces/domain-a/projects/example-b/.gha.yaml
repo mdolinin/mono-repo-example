@@ -3,7 +3,7 @@ moduleName: example-b
 teamNamespace: domain-a
 
 sharedParams:
-  ROOT_DIR: "namespaces/domain-a"
+  ROOT_DIR: "namespaces/domain-a/projects/example-b"
 
 defaultFileChangeTrigger: &defaultFileChangeTrigger
   - "namespaces/domain-a/projects/example-b/**"
