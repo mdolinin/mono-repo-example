@@ -26,7 +26,7 @@ onPullRequest:
         COMMAND: make test
     triggerConditions:
       fileChangesMatchAny:
-        - "namespaces/domain-b/projects/example-c/tests/**"
+        - "namespaces/domain-b/projects/example-c/tests/test.sh"
 
 onBranchMerge:
   - name: cleanup
