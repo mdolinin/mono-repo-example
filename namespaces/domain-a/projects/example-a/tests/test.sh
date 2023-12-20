@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 echo "Hello from example-a"
-echo "Usefull work 5"
+echo "Usefull work 6"
+exit 1
 echo "This is a test script"
