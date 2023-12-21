@@ -38,5 +38,5 @@ onBranchMerge:
           make clean
     triggerConditions:
       destinationBranchMatchesAny:
-        - 'master'
+        - 'main'
       fileChangesMatchAny: *defaultFileChangeTrigger

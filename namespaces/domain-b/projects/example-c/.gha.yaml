@@ -38,7 +38,7 @@ onBranchMerge:
           make release
     triggerConditions:
       destinationBranchMatchesAny:
-        - 'master'
+        - 'main'
       fileChangesMatchAny: *defaultFileChangeTrigger
 
 onPullRequestClose:
@@ -51,5 +51,5 @@ onPullRequestClose:
           make clean
     triggerConditions:
       destinationBranchMatchesAny:
-        - 'master'
+        - 'main'
       fileChangesMatchAny: *defaultFileChangeTrigger
