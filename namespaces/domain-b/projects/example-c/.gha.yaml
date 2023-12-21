@@ -29,6 +29,19 @@ onPullRequest:
         - "namespaces/domain-b/projects/example-c/tests/test.sh"
 
 onBranchMerge:
+  - name: release
+    pipelineRef:
+      name: common-job
+    pipelineRunValues:
+      params:
+        COMMAND: >-
+          make release
+    triggerConditions:
+      destinationBranchMatchesAny:
+        - 'master'
+      fileChangesMatchAny: *defaultFileChangeTrigger
+
+onPullRequestClose:
   - name: cleanup
     pipelineRef:
       name: common-job
