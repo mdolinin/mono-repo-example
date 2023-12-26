@@ -5,3 +5,4 @@ test:
 	./tests/test.sh
 clean:
 	echo "Cleaning example-b"
+	exit 1
