@@ -5,3 +5,5 @@ test:
 	./tests/test.sh
 clean:
 	echo "Cleaning example-a"
+release:
+	echo "Releasing example-c"
