@@ -35,7 +35,7 @@ onBranchMerge:
     pipelineRunValues:
       params:
         COMMAND: >-
-          make release
+          make clean
     triggerConditions:
       destinationBranchMatchesAny:
         - 'main'
