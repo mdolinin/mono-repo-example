@@ -16,7 +16,8 @@ onPullRequest:
       params:
         COMMAND: make build
     triggerConditions:
-      fileChangesMatchAny: *defaultFileChangeTrigger
+      fileChangesMatchAny:
+        - "namespaces/domain-a/projects/example-a/tests/**"
 
   - name: test
     pipelineRef:
