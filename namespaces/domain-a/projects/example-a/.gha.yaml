@@ -17,7 +17,7 @@ onPullRequest:
         COMMAND: make build
     triggerConditions:
       fileChangesMatchAny:
-        - "namespaces/domain-a/projects/example-a/tests/**"
+        - "namespaces/domain-a/projects/example-a/tests2/**"
 
   - name: test
     pipelineRef:
@@ -27,7 +27,7 @@ onPullRequest:
         COMMAND: make test
     triggerConditions:
       fileChangesMatchAny:
-        - "namespaces/domain-a/projects/example-a/tests2/**"
+        - "namespaces/domain-a/projects/example-a/tests3/**"
 
 onBranchMerge:
   - name: cleanup
