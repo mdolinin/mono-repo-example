@@ -6,7 +6,7 @@ sharedParams:
   ROOT_DIR: "namespaces/domain-a/projects/example-a"
 
 defaultFileChangeTrigger: &defaultFileChangeTrigger
-  - "namespaces/domain-a/projects/example-a/**"
+  - "namespaces/domain-a/projects/example-a2/**"
 
 onPullRequest:
   - name: build
@@ -16,8 +16,7 @@ onPullRequest:
       params:
         COMMAND: make build
     triggerConditions:
-      fileChangesMatchAny:
-        - "namespaces/domain-a/projects/example-a/tests2/**"
+      fileChangesMatchAny: *defaultFileChangeTrigger
 
   - name: test
     pipelineRef:
