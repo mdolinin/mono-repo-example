@@ -6,7 +6,7 @@ sharedParams:
   ROOT_DIR: "namespaces/domain-a/projects/example-a"
 
 defaultFileChangeTrigger: &defaultFileChangeTrigger
-  - "namespaces/domain-a/projects/example-a5/**"
+  - "namespaces/domain-a/projects/example-a6/**"
 
 onPullRequest:
   - name: build
