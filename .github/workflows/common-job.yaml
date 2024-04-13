@@ -4,11 +4,6 @@ on:
     inputs:
       PIPELINE_NAME:
         required: true
-      ROOT_DIR:
-        required: false
-        default: ""
-      COMMAND:
-        required: true
       SERIALIZED_VARIABLES: # workaround the 10 input limit by serializing the variables into a JSON string
         required: true
 
