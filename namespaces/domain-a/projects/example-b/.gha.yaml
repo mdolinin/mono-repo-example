@@ -40,3 +40,15 @@ onBranchMerge:
       destinationBranchMatchesAny:
         - 'main'
       fileChangesMatchAny: *defaultFileChangeTrigger
+
+onSlashCommand:
+   - name: validate-before-merge
+     pipelineRef:
+        name: common-job
+     pipelineRunValues:
+        params:
+           COMMAND: make ${command} ${args} # ${command} and ${args} will be replaced with values from the comment slash command
+     triggerConditions:
+        slashCommands:
+           - "validate"
+        fileChangesMatchAny: *defaultFileChangeTrigger

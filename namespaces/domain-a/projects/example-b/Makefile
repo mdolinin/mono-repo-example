@@ -5,3 +5,5 @@ test:
 	./tests/test.sh
 clean:
 	echo "Cleaning example-b"
+validate:
+	echo "Validating example-b $(param)"
