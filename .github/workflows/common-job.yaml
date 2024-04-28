@@ -35,5 +35,5 @@ jobs:
       - name: Execute Task
         env:
           USER_HOME: ${{ github.workspace }}
-        working-directory: ${{ github.event.inputs.ROOT_DIR }}
-        run: ${{ github.event.inputs.COMMAND }}
+        working-directory: ${{ env.ROOT_DIR }}
+        run: ${{ env.COMMAND }}
