@@ -1,5 +1,5 @@
 name: "Common job"
-run-name: "${{ inputs.PIPELINE_NAME }}"
+run-name: "PR ${{ fromJSON(inputs.SERIALIZED_VARIABLES).PR_NUMBER }} ${{ inputs.PIPELINE_NAME }}"
 on:
   workflow_dispatch:
     inputs:
